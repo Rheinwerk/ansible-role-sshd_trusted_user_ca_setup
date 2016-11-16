@@ -11,7 +11,7 @@
     - Reload sshd
 
 - name: Setup TrustedUserCAKeys in sshd_config
-  lineinfile: dest="/etc/ssh/sshd_config" line='TrustedUserCAKeys {{ _sshd_trusted_user_ca_setup.filename }}' insertbefore='EOF' validate="sshd -t %s'
+  lineinfile: dest="/etc/ssh/sshd_config" line='TrustedUserCAKeys {{ _sshd_trusted_user_ca_setup.filename }}' insertbefore='EOF' validate="sshd -t %s"
   notify:
     - Reload sshd
 
