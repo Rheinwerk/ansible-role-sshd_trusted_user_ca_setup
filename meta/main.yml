@@ -1,6 +1,6 @@
 galaxy_info:
   author: Daniel Schneller
-  description: Sets up readahead for all detected block devices
+  description: Sets up sshd to allow user logins with SSH certificates
   company: Rheinwerk
   license: license (GPLv3)
   min_ansible_version: 2.0
@@ -9,6 +9,8 @@ galaxy_info:
     versions:
     - trusty
   galaxy_tags:
-    - readahead
+    - openssh
+    - ssh
+    - pki
 dependencies: []
 
