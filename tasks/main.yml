@@ -14,4 +14,3 @@
   lineinfile: dest="/etc/ssh/sshd_config" regexp='^TrustedUserCAKeys .*$' line='TrustedUserCAKeys /etc/ssh/{{ _sshd_trusted_user_ca_setup.filename }}' insertbefore='EOF' validate="sshd -t -f %s"
   notify:
     - Reload sshd
-
