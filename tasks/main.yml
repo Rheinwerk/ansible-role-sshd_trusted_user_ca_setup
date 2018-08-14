@@ -5,12 +5,45 @@
 # vim:et:ts=2:ft=ansible
 
 - name: Install public keys
-  lineinfile: dest="/etc/ssh/{{ _sshd_trusted_user_ca_setup.filename }}" line='{{ item }}' insertbefore='EOF' create=yes owner=root group=root mode=0644
+  lineinfile:
+    dest: "/etc/ssh/{{ _sshd_trusted_user_ca_setup.filename }}"
+    line: '{{ item }}'
+    insertbefore: 'EOF'
+    create: yes
+    owner: "root"
+    group: "root"
+    mode: "0644"
   with_items: "{{ _sshd_trusted_user_ca_setup.public_keys }}"
   notify:
     - Reload sshd
 
 - name: Setup TrustedUserCAKeys in sshd_config
-  lineinfile: dest="/etc/ssh/sshd_config" regexp='^TrustedUserCAKeys .*$' line='TrustedUserCAKeys /etc/ssh/{{ _sshd_trusted_user_ca_setup.filename }}' insertbefore='EOF' validate="sshd -t -f %s"
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: '^TrustedUserCAKeys .*$'
+    line: 'TrustedUserCAKeys /etc/ssh/{{ _sshd_trusted_user_ca_setup.filename }}'
+    insertbefore: 'EOF'
+    validate: "sshd -t -f %s"
   notify:
     - Reload sshd
+
+- block:
+    - name: Create Trusted Principals File
+      template:
+        src: "/etc/ssh/authorized_principals.j2"
+        dest: "/etc/ssh/{{ _sshd_trusted_user_ca_setup.authorized_principals.filename }}"
+        owner: "root"
+        group: "root"
+        mode: "0644"
+
+    - name: Setup Trusted Principals File in sshd_config
+      lineinfile:
+        dest: "/etc/ssh/sshd_config"
+        regexp: '^AuthorizedPrincipalsFile .*$'
+        line: 'AuthorizedPrincipalsFile /etc/ssh/{{ _sshd_trusted_user_ca_setup.authorized_principals.filename_pattern }}'
+        insertbefore: 'EOF'
+        validate: "sshd -t -f %s"
+      notify:
+        - Reload sshd
+
+  when: _sshd_trusted_user_ca_setup.authorized_principals is defined
