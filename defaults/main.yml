@@ -5,10 +5,10 @@ _sshd_trusted_user_ca_setup:
   filename: trusted-user-ca-certs.pub
   public_keys:
     - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUQjZp/DsQO8PMEfdcCWYFwFhPbtCajXyqmwltnSmaBEMGMRzJN1q4wSBPe50JIVCjZWrgqAuU5D3teU6UOzqMKtBNK/HC5zI0uR8QL9dtiG+hNnFNJ+psgqGlXakuZYAW6WNd3EsKBd6tuLl8DZyl4pxiyjUypWX99YFHK32Zrsya5bFj21/u9clr26jfu4rSlM/qUfO4bBuzLKgiCDQZEpGhu8hapwAm6yVt/JLemIDtzGRaasTud1UiB6R7VOIIFeR+cPoKpmBWT2P8zOpERQeIUKiuICCPVz79oUDI7TEkEqngHA7prQKdDVzbNwhK7pJYoaAVkK+D51VtzrO3 Demo CA"
-  trusted_principals:
+  authorized_principals:
     filename_pattern: "%u_principals"
     filename:
       - "admin_principals"
     principals:
-      - "demo-user-1"
-      - "demo-user-2"
+      - "demo-1"
+      - "demo-2"
