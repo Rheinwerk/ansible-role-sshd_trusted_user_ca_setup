@@ -1,7 +1,4 @@
 ---
-#
-# tasks file for ansible-role-sshd_trusted_user_ca_setup
-#
 # vim:et:ts=2:ft=ansible
 
 - name: Install public keys
