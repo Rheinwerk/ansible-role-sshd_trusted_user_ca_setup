@@ -27,7 +27,7 @@
 - block:
     - name: Create Trusted Principals File
       template:
-        src: "/etc/ssh/authorized_principals.j2"
+        src: "etc/ssh/authorized_principals.j2"
         dest: "/etc/ssh/{{ _sshd_trusted_user_ca_setup.authorized_principals.filename }}"
         owner: "root"
         group: "root"
