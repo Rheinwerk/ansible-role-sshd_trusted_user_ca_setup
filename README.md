@@ -4,7 +4,7 @@ SSHD Trusted User Setup
 This role can be used to set up OpenSSH's `sshd_config` to allow user
 authentication based on certificates signed by a trusted Root CA key.
 
-[![Build Status](https://travis-ci.org/Rheinwerk/ansible-role-sshd_trusted_user_ca_setup.svg?branch=master)](https://travis-ci.org/Rheinwerk/ansible-role-sshd_trusted_user_ca_setup)
+[![Build Status](https://github.com/Rheinwerk/ansible-role-sshd_trusted_user_ca_setup/actions/workflows/ci.yml/badge.svg)](https://github.com/Rheinwerk/ansible-role-sshd_trusted_user_ca_setup/actions/workflows/ci.yml)
 
 Requirements
 ------------
